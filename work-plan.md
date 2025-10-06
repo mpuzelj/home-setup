@@ -139,11 +139,7 @@
      - Other applications.
   3. Set up Kubernetes on VMs and integrate with Azure Arc.
 
----
-
-## 5. File Sharing
-
-### 5.1 Compare Solutions
+### 4.4 File Sharing
 - **Options**:
   - TrueNAS: Robust NAS solution with granular permissions.
   - Samba: Lightweight SMB sharing.
@@ -154,7 +150,7 @@
 
 ---
 
-## 6. Testing and Validation
+## 5. Testing and Validation
 - **Objective**: Ensure everything works as expected.
 - **Steps**:
   1. Test traffic forwarding and domain configuration.
@@ -164,7 +160,7 @@
 
 ---
 
-## 7. Documentation
+## 6. Documentation
 - **Objective**: Maintain detailed records of the setup.
 - **Steps**:
   1. Document all configurations (e.g., IP addresses, firewall rules).
@@ -172,15 +168,15 @@
 
 ---
 
-## 8. Integration with Work Environment
+## 7. Integration with Work Environment
 
-### 8.1 Hosting GitLab
+### 7.1 Hosting GitLab
 - **Objective**: Host GitLab CE for CI/CD pipelines.
 - **Steps**:
   1. Set up GitLab CE in a container or VM.
   2. Configure GitLab Runners for CI/CD pipelines.
 
-### 8.2 Setting Up CI/CD Agents
+### 7.2 Setting Up CI/CD Agents
 - **Objective**: Run CI/CD pipelines using home lab resources.
 - **Steps**:
   1. Install and configure CI/CD agents for:
@@ -190,7 +186,7 @@
   2. Configure all agents on the same VM if possible.
   3. Test CI/CD pipelines to ensure proper functionality.
 
-### 8.3 Azure Integration
+### 7.3 Azure Integration
 - **Objective**: Integrate the home lab with Azure for DevOps and cloud management.
 - **Steps**:
   1. Register the home lab server and VMs with Azure Arc.
@@ -202,7 +198,7 @@
 
 ---
 
-## 9. Testing and Validation
+## 8. Testing and Validation
 - Test traffic forwarding and domain configuration.
 - Verify WireGuard connectivity.
 - Test file sharing and hosted services.
