@@ -113,9 +113,11 @@
 
 ### 4.1 Select Operating System
 - **Options**:
-  - Proxmox VE (for virtualization).
-  - TrueNAS (for file sharing and storage).
-  - Ubuntu Server (general-purpose server).
+  - Proxmox VE: Dedicated virtualization OS.
+  - Fedora/Arch with KVM: General-purpose OS with virtualization tools.
+  - Other GUI-based solutions: VMware ESXi, XCP-ng, or Ubuntu Server with Cockpit.
+- **Next Steps**:
+  - Evaluate based on ease of use, GUI availability, and resource requirements.
 
 ### 4.2 Configure Virtual Machines
 - **Objective**: Set up VMs for specific tasks.
@@ -125,6 +127,7 @@
      - Private cloud.
      - Torrent client.
      - Other services.
+  3. Register VMs with Azure Arc for management.
 
 ### 4.3 Set Up Containers
 - **Objective**: Host services using Docker or Kubernetes.
@@ -134,14 +137,20 @@
      - File sharing.
      - Media servers.
      - Other applications.
+  3. Set up Kubernetes on VMs and integrate with Azure Arc.
 
 ---
 
 ## 5. File Sharing
-- **Objective**: Set up centralized storage and ad-hoc sharing.
-- **Steps**:
-  1. Configure a file share for home movies, music, ISOs, etc.
-  2. Create an ad-hoc share folder for random files.
+
+### 5.1 Compare Solutions
+- **Options**:
+  - TrueNAS: Robust NAS solution with granular permissions.
+  - Samba: Lightweight SMB sharing.
+  - Nextcloud: Private cloud with advanced sharing options.
+- **Next Steps**:
+  - Test compatibility with older TVs, Android, Windows, and Linux.
+  - Configure folders: Video, ISOs, torrent, tools, temp, and general share.
 
 ---
 
@@ -151,6 +160,7 @@
   1. Test traffic forwarding and domain configuration.
   2. Verify VPN connectivity.
   3. Test all hosted services and file shares.
+  4. Validate CI/CD pipelines and Azure Arc integration.
 
 ---
 
@@ -164,37 +174,36 @@
 
 ## 8. Integration with Work Environment
 
-### 8.1 Hosting GitLab or GitHub
-- **Objective**: Host a version control system for personal and work-related projects.
+### 8.1 Hosting GitLab
+- **Objective**: Host GitLab CE for CI/CD pipelines.
 - **Steps**:
-  1. Decide between GitLab (self-hosted) or GitHub (if self-hosting is possible).
-  2. Set up the chosen platform in a container or VM on the home lab server.
-  3. Configure access for:
-     - Personal use.
-     - Work-related projects.
+  1. Set up GitLab CE in a container or VM.
+  2. Configure GitLab Runners for CI/CD pipelines.
 
 ### 8.2 Setting Up CI/CD Agents
 - **Objective**: Run CI/CD pipelines using home lab resources.
 - **Steps**:
   1. Install and configure CI/CD agents for:
-     - GitLab Runner (if using GitLab).
-     - GitHub Actions self-hosted runners (if using GitHub).
-  2. Integrate the agents with the hosted version control system.
+     - GitLab Runner.
+     - GitHub Actions self-hosted runners.
+     - Azure DevOps agent.
+  2. Configure all agents on the same VM if possible.
   3. Test CI/CD pipelines to ensure proper functionality.
 
 ### 8.3 Azure Integration
 - **Objective**: Integrate the home lab with Azure for DevOps and cloud management.
 - **Steps**:
-  1. Explore Azure Arc for managing on-premises resources.
-  2. Register the home lab server with Azure Arc.
-  3. Configure Azure services for:
+  1. Register the home lab server and VMs with Azure Arc.
+  2. Configure Azure services for:
      - Monitoring and management.
      - Deployment pipelines.
+  3. Set up Kubernetes on VMs and integrate with Azure Arc.
   4. Test integration to ensure seamless operation between the home lab and Azure.
 
-### 8.4 Testing and Validation
-- **Objective**: Ensure all integrations are functional and secure.
-- **Steps**:
-  1. Test version control system access and functionality.
-  2. Run sample CI/CD pipelines to validate agent setup.
-  3. Verify Azure Arc integration and resource management.
+---
+
+## 9. Testing and Validation
+- Test traffic forwarding and domain configuration.
+- Verify WireGuard connectivity.
+- Test file sharing and hosted services.
+- Validate CI/CD pipelines and Azure Arc integration.

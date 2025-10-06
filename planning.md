@@ -10,6 +10,9 @@
 - Set up the network router to connect to the landlord's router and then to the internet.
 - Host a private cloud.
 - Configure MikroTik RB4011iGS as the WireGuard server for simplicity and reliability.
+- Integrate home lab with Azure Arc for managing VMs and Kubernetes.
+- Set up GitLab for CI/CD pipelines and runners.
+- Configure a VM to host GitLab Runner, Azure DevOps agent, and GitHub Actions runner.
 
 ---
 
@@ -23,59 +26,60 @@
   - Run virtual machines (VMs) on the home server.
   - Host containers for services.
   - Set up a file share for centralized storage.
+  - Use WireGuard for secure remote access.
+  - Integrate with Azure Arc for managing resources.
 
 ---
 
-## 3. Network Topology Plan
-- **Core Components**:
-  - Router: High-performance router with advanced features (e.g., VLANs, QoS, firewall).
-  - Switches: Managed switches for better traffic control.
-  - Access Points: Multiple Wi-Fi access points for better coverage.
-- **Segmentation**:
-  - VLANs to separate traffic (e.g., IoT devices, guest network, lab network).
-  - DMZ for public-facing services.
-- **IP Addressing**:
-  - Consistent IP addressing scheme (e.g., 192.168.x.x or 10.x.x.x).
-  - Static IPs for critical devices.
+## 3. Decisions and Options
+
+### 3.1 Virtualization Host
+- **Decisions**:
+  - Proxmox VE: Dedicated virtualization OS.
+  - Fedora/Arch with KVM: General-purpose OS with virtualization tools.
+  - Other GUI-based solutions: VMware ESXi, XCP-ng, or Ubuntu Server with Cockpit.
+- **Next Steps**:
+  - Evaluate based on ease of use, GUI availability, and resource requirements.
+
+### 3.2 File Sharing
+- **Decisions**:
+  - TrueNAS: Robust NAS solution with granular permissions.
+  - Samba: Lightweight SMB sharing.
+  - Nextcloud: Private cloud with advanced sharing options.
+- **Next Steps**:
+  - Test compatibility with older TVs, Android, Windows, and Linux.
+  - Configure folders: Video, ISOs, torrent, tools, temp, and general share.
+
+### 3.3 Subdomain Management
+- **Decisions**:
+  - Manage subdomains via registrar’s DNS tools.
+  - Point subdomains (e.g., `vpn.wolf.3ranger.eu`) to the landlord’s static IP.
+  - Use port forwarding to direct traffic to internal services.
+- **Next Steps**:
+  - Define subdomains and configure DNS records.
+  - Set up port forwarding for each service.
+
+### 3.4 CI/CD Tools
+- **Decisions**:
+  - GitLab CE: Self-hosted CI/CD platform.
+  - Azure DevOps: Free tier with self-hosted agents.
+  - GitHub Actions: Self-hosted runners for GitHub workflows.
+- **Next Steps**:
+  - Set up GitLab CE in a container or VM.
+  - Configure GitLab Runner, Azure DevOps agent, and GitHub Actions runner on the same VM.
+
+### 3.5 Azure Arc Integration
+- **Decisions**:
+  - Register VMs with Azure Arc for management.
+  - Set up Kubernetes on VMs and integrate with Azure Arc.
+- **Next Steps**:
+  - Explore Azure Arc features for monitoring and deployment.
+  - Test integration with Kubernetes and VMs.
 
 ---
 
-## 4. Home Lab Setup
-- **Hardware**:
-  - Dedicated server or repurposed old hardware.
-  - NAS for centralized storage.
-  - Virtualization tools: Proxmox, VMware ESXi, or Hyper-V.
-- **Software**:
-  - Containerization: Docker or Kubernetes for running services.
-  - Monitoring: Grafana, Prometheus, or Zabbix.
-  - Automation: Ansible, Terraform, or similar tools.
-- **Services**:
-  - DNS: Local DNS server (e.g., Pi-hole, Unbound).
-  - VPN: Secure remote access (e.g., WireGuard, OpenVPN).
-  - Reverse Proxy: Managing web services (e.g., Nginx, Traefik).
-
----
-
-## 5. Security Best Practices
-- Robust firewall (e.g., pfSense, OPNsense).
-- Regular updates for all devices and software.
-- Reliable backup strategy.
-- Strong passwords and multi-factor authentication (MFA).
-
----
-
-## 6. Tools for Planning and Documentation
-- **Network Diagram Tools**: draw.io, Lucidchart, or Visio.
-- **Documentation**: Maintain detailed records of the setup (e.g., IP addresses, configurations).
-
----
-
-## 7. Budget and Timeline
-- **Budget**: Determine spending limits for hardware and software.
-- **Timeline**: Break the project into phases (e.g., network upgrade, lab setup).
-
----
-
-## 8. Testing and Iteration
-- Start small and test each component before scaling up.
-- Monitor performance and make adjustments as needed.
+## 4. Testing and Validation
+- Test traffic forwarding and domain configuration.
+- Verify WireGuard connectivity.
+- Test file sharing and hosted services.
+- Validate CI/CD pipelines and Azure Arc integration.
